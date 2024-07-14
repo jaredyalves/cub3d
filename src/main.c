@@ -20,5 +20,10 @@ int	main(int argc, char **argv)
 	printf("R: %d\n", get_config()->c_color[0]);
 	printf("G: %d\n", get_config()->c_color[1]);
 	printf("B: %d\n", get_config()->c_color[2]);
+	printf("--- Map\n");
+	for (int i = 0; i < get_config()->map_height; ++i)
+	{
+		printf("%s\n", get_config()->map[i]);
+	}
 	free_config();
 }
