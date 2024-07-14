@@ -7,6 +7,7 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	init_config();
 	parse_file(argv[1]);
+	// --- DEBUG
 	printf("--- Textures\n");
 	printf("N Texture: %s\n", get_config()->n_texture);
 	printf("S Texture: %s\n", get_config()->s_texture);
@@ -25,5 +26,6 @@ int	main(int argc, char **argv)
 	{
 		printf("%s\n", get_config()->map[i]);
 	}
+	// --- DEBUG
 	free_config();
 }
