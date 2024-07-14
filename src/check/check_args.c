@@ -1,17 +1,11 @@
+#include "cub3d.h"
 #include "libft.h"
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-static int	has_cub_extension(const char *filename)
-{
-	const char	*ext = ft_strrchr(filename, '.');
-
-	return (ext && ft_strncmp(ext, ".cub", 5) == 0);
-}
-
-void	check_args(const int argc, char **argv)
+void	check_args(int argc, char **argv)
 {
 	int	fd;
 
@@ -20,7 +14,7 @@ void	check_args(const int argc, char **argv)
 		ft_putstr_fd("Error\nThe program requires exactly one argument\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	if (!has_cub_extension(argv[1]))
+	if (!has_extension(argv[1], "cub"))
 	{
 		ft_putstr_fd("Error\nThe file must have a .cub extension\n", 2);
 		exit(EXIT_FAILURE);

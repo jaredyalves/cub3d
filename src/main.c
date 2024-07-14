@@ -2,22 +2,23 @@
 
 #include <stdio.h>
 
-int	main(const int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_config	config;
-
 	check_args(argc, argv);
-	init_config(&config);
-	parse_file(&config, argv[1]);
-	printf("North Texture: %s\n", config.north_texture);
-	printf("South Texture: %s\n", config.south_texture);
-	printf("West Texture: %s\n", config.west_texture);
-	printf("East Texture: %s\n", config.east_texture);
-	printf("Floor Color: %d,%d,%d\n", config.floor_color[0], config.floor_color[1], config.floor_color[2]);
-	printf("Ceiling Color: %d,%d,%d\n", config.ceiling_color[0], config.ceiling_color[1], config.ceiling_color[2]);
-	printf("Map:\n");
-	for (int i = 0; i < config.map_height; i++)
-	{
-		printf("%s\n", config.map[i]);
-	}
+	init_config();
+	parse_file(argv[1]);
+	printf("--- Textures\n");
+	printf("N Texture: %s\n", get_config()->n_texture);
+	printf("S Texture: %s\n", get_config()->s_texture);
+	printf("W Texture: %s\n", get_config()->w_texture);
+	printf("E Texture: %s\n", get_config()->e_texture);
+	printf("--- Floor Colors\n");
+	printf("R: %d\n", get_config()->f_color[0]);
+	printf("G: %d\n", get_config()->f_color[1]);
+	printf("B: %d\n", get_config()->f_color[2]);
+	printf("--- Ceiling Colors\n");
+	printf("R: %d\n", get_config()->c_color[0]);
+	printf("G: %d\n", get_config()->c_color[1]);
+	printf("B: %d\n", get_config()->c_color[2]);
+	free_config();
 }

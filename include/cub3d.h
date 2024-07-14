@@ -1,25 +1,37 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# ifndef BLANKS
+#  define BLANKS " \t\n"
+# endif
+
 typedef struct s_config
 {
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
-	int		floor_color[3];
-	int		ceiling_color[3];
+	char	*n_texture;
+	char	*s_texture;
+	char	*w_texture;
+	char	*e_texture;
+	int		f_color[3];
+	int		c_color[3];
 	char	**map;
 	int		map_height;
 
 }			t_config;
 
-// Init
-void		init_config(t_config *config);
+// check
+void		check_args(int argc, char **argv);
 
-// Parse
-void		check_args(const int argc, char **argv);
-void		parse_file(t_config *config, const char *filename);
-void		parse_line(t_config *config, char *line);
+// parse
+void		parse_file(char *filename);
+void		parse_line(char *line);
+
+// utils
+t_config	*get_config(void);
+void		init_config(void);
+void		free_config(void);
+
+int			has_extension(char *filename, char *extension);
+
+void		cub3d_exit(char *error);
 
 #endif

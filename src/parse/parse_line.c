@@ -3,18 +3,18 @@
 
 #include <stdlib.h>
 
-void	parse_texture(char *line, char **texture)
+static void	parse_texture(char *str, char **texture)
 {
-	*texture = ft_strdup(ft_strtrim(line, " \n"));
+	*texture = ft_strtrim(str, BLANKS);
 }
 
-void	parse_color(char *line, int color[3])
+static void	parse_color(char *str, int color[3])
 {
 	int		i;
 	char	**colors;
 
 	i = 0;
-	colors = ft_split(line, ',');
+	colors = ft_split(str, ',');
 	while (colors[i])
 	{
 		color[i] = ft_atoi(colors[i]);
@@ -24,18 +24,24 @@ void	parse_color(char *line, int color[3])
 	free(colors);
 }
 
-void	parse_line(t_config *config, char *line)
+void	parse_line(char *line)
 {
-	if (!ft_strncmp(line, "NO ", 3))
-		parse_texture(line + 3, &config->north_texture);
-	else if (!ft_strncmp(line, "SO ", 3))
-		parse_texture(line + 3, &config->south_texture);
-	else if (!ft_strncmp(line, "WE ", 3))
-		parse_texture(line + 3, &config->west_texture);
-	else if (!ft_strncmp(line, "EA ", 3))
-		parse_texture(line + 3, &config->east_texture);
-	else if (!ft_strncmp(line, "F ", 2))
-		parse_color(line + 2, config->floor_color);
-	else if (!ft_strncmp(line, "C ", 2))
-		parse_color(line + 2, config->ceiling_color);
+	t_config	*cfg;
+	char		*trm;
+
+	cfg = get_config();
+	trm = ft_strtrim(line, BLANKS);
+	if (!ft_strncmp(trm, "NO ", 3))
+		parse_texture(trm + 3, &cfg->n_texture);
+	else if (!ft_strncmp(trm, "SO ", 3))
+		parse_texture(trm + 3, &cfg->s_texture);
+	else if (!ft_strncmp(trm, "WE ", 3))
+		parse_texture(trm + 3, &cfg->w_texture);
+	else if (!ft_strncmp(trm, "EA ", 3))
+		parse_texture(trm + 3, &cfg->e_texture);
+	else if (!ft_strncmp(trm, "F ", 2))
+		parse_color(trm + 2, cfg->f_color);
+	else if (!ft_strncmp(trm, "C ", 2))
+		parse_color(trm + 2, cfg->c_color);
+	free(trm);
 }

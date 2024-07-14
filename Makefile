@@ -16,10 +16,12 @@ INCDIR		:= include
 
 SRCS		:= \
 	$(SRCDIR)/main.c \
-	$(SRCDIR)/init/init_config.c \
-	$(SRCDIR)/parse/check_args.c \
+	$(SRCDIR)/check/check_args.c \
 	$(SRCDIR)/parse/parse_file.c \
 	$(SRCDIR)/parse/parse_line.c \
+	$(SRCDIR)/utils/config.c \
+	$(SRCDIR)/utils/exit.c \
+	$(SRCDIR)/utils/extension.c \
 
 OBJS		:= $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 INCS		:= \

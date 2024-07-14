@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	parse_file(t_config *config, const char *filename)
+void	parse_file(char *filename)
 {
 	int		fd;
 	char	*line;
@@ -16,9 +16,8 @@ void	parse_file(t_config *config, const char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		parse_line(config, line);
+		parse_line(line);
 		free(line);
-		line = NULL;
 	}
 	close(fd);
 }
