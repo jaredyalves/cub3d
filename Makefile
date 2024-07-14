@@ -17,6 +17,10 @@ INCDIR		:= include
 SRCS		:= \
 	$(SRCDIR)/main.c \
 	$(SRCDIR)/check/check_args.c \
+	$(SRCDIR)/check/check_color.c \
+	$(SRCDIR)/check/check_config.c \
+	$(SRCDIR)/check/check_map.c \
+	$(SRCDIR)/check/check_texture.c \
 	$(SRCDIR)/parse/parse_file.c \
 	$(SRCDIR)/parse/parse_line.c \
 	$(SRCDIR)/utils/config.c \

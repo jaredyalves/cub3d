@@ -5,6 +5,11 @@
 
 static void	parse_texture(char *str, char **texture)
 {
+	if (*texture)
+	{
+		free(str - 3);
+		cub3d_exit("Error\nOne or more textures are duplicated\n");
+	}
 	*texture = ft_strtrim(str, BLANKS);
 }
 
@@ -13,6 +18,11 @@ static void	parse_color(char *str, int color[3])
 	int		i;
 	char	**colors;
 
+	if (*color != -1)
+	{
+		free(str - 2);
+		cub3d_exit("Error\nOne or more colors are duplicated\n");
+	}
 	i = 0;
 	colors = ft_split(str, ',');
 	if (!colors)

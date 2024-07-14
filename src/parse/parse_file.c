@@ -7,17 +7,19 @@
 
 void	parse_file(char *filename)
 {
-	int		fd;
-	char	*line;
+	t_config	*config;
+	int			fd;
 
+	config = get_config();
 	fd = open(filename, O_RDONLY);
 	while (1)
 	{
-		line = get_next_line(fd);
-		if (!line)
+		config->p_line = get_next_line(fd);
+		if (!config->p_line)
 			break ;
-		parse_line(line);
-		free(line);
+		parse_line(config->p_line);
+		free(config->p_line);
+		config->p_line = NULL;
 	}
 	close(fd);
 }

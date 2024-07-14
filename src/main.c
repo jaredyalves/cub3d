@@ -7,6 +7,7 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	init_config();
 	parse_file(argv[1]);
+	check_config();
 	// --- DEBUG
 	printf("--- Textures\n");
 	printf("N Texture: %s\n", get_config()->n_texture);

@@ -7,6 +7,7 @@
 
 typedef struct s_config
 {
+	char	*p_line;
 	char	*n_texture;
 	char	*s_texture;
 	char	*w_texture;
@@ -20,6 +21,10 @@ typedef struct s_config
 
 // check
 void		check_args(int argc, char **argv);
+void		check_config(void);
+void		check_texture(char *texture);
+void		check_color(int color[3]);
+void		check_map(char **map, int height);
 
 // parse
 void		parse_file(char *filename);

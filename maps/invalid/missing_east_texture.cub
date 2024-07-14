@@ -1,0 +1,12 @@
+NO ./textures/default/red_brick.xpm
+SO ./textures/default/green_brick.xpm
+WE ./textures/default/blue_brick.xpm
+
+F 0,0,0
+C 0,0,0
+
+11111
+10001
+10N01
+10001
+11111
