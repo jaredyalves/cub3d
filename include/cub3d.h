@@ -7,6 +7,8 @@
 
 typedef struct s_config
 {
+	int		parsing_map;
+	int		parsing_done;
 	char	*p_line;
 	char	*p_trim;
 	char	*n_texture;

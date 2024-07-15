@@ -49,6 +49,22 @@ static void	parse_map(char *str)
 	map[cfg->map_height - 1] = ft_strtrim(str, "\n");
 	free(cfg->map);
 	cfg->map = map;
+	cfg->parsing_map = 1;
+}
+
+static void	parsing_map(void)
+{
+	t_config	*cfg;
+
+	cfg = get_config();
+	if (cfg->parsing_map == 1)
+	{
+		if (!*cfg->p_trim)
+		{
+			cfg->parsing_map = 0;
+			cfg->parsing_done = 1;
+		}
+	}
 }
 
 void	parse_line(char *line)
@@ -57,6 +73,9 @@ void	parse_line(char *line)
 
 	cfg = get_config();
 	cfg->p_trim = ft_strtrim(line, BLANKS);
+	parsing_map();
+	if (cfg->parsing_done && *cfg->p_trim)
+		cub3d_exit("Map is not the last");
 	if (!ft_strncmp(cfg->p_trim, "NO ", 3))
 		parse_texture(cfg->p_trim + 3, &cfg->n_texture);
 	else if (!ft_strncmp(cfg->p_trim, "SO ", 3))

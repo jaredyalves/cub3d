@@ -16,6 +16,8 @@ void	init_config(void)
 
 	i = 0;
 	cfg = get_config();
+	cfg->parsing_map = 0;
+	cfg->parsing_done = 0;
 	cfg->p_line = NULL;
 	cfg->p_trim = NULL;
 	cfg->n_texture = NULL;
