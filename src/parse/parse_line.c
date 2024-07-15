@@ -32,7 +32,7 @@ static void	parse_color(char *str, int color[3])
 		cub3d_exit("Invalid color syntax");
 }
 
-static void	parse_map(char *str)
+static void	parse_map_line(char *str)
 {
 	int			i;
 	t_config	*cfg;
@@ -52,7 +52,7 @@ static void	parse_map(char *str)
 	cfg->parsing_map = 1;
 }
 
-static void	parsing_map(void)
+static void	verify_parsing(void)
 {
 	t_config	*cfg;
 
@@ -73,7 +73,7 @@ void	parse_line(char *line)
 
 	cfg = get_config();
 	cfg->p_trim = ft_strtrim(line, BLANKS);
-	parsing_map();
+	verify_parsing();
 	if (cfg->parsing_done && *cfg->p_trim)
 		cub3d_exit("Map is not the last");
 	if (!ft_strncmp(cfg->p_trim, "NO ", 3))
@@ -89,7 +89,7 @@ void	parse_line(char *line)
 	else if (!ft_strncmp(cfg->p_trim, "C ", 2))
 		parse_color(cfg->p_trim + 2, cfg->c_color);
 	else if (ft_strchr(cfg->p_trim, '0') || ft_strchr(cfg->p_trim, '1'))
-		parse_map(line);
+		parse_map_line(line);
 	free(cfg->p_trim);
 	cfg->p_trim = NULL;
 }
