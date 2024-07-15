@@ -8,6 +8,7 @@
 typedef struct s_config
 {
 	char	*p_line;
+	char	*p_trim;
 	char	*n_texture;
 	char	*s_texture;
 	char	*w_texture;
@@ -38,6 +39,6 @@ void		free_config(void);
 int			has_extension(char *filename, char *extension);
 
 void		cub3d_exit(char *error);
-int			cub3d_atoi(char *str);
+int			cub3d_atoi(char *str, char **strs, int pos);
 
 #endif

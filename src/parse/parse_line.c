@@ -6,7 +6,7 @@
 static void	parse_texture(char *str, char **texture)
 {
 	if (*texture)
-		return (free(str - 3), cub3d_exit("Duplicated texture"));
+		cub3d_exit("Duplicated texture");
 	*texture = ft_strtrim(str, BLANKS);
 }
 
@@ -16,7 +16,7 @@ static void	parse_color(char *str, int color[3])
 	char	**colors;
 
 	if (color[0] != -1 || color[1] != -1 || color[2] != -1)
-		return (free(str - 2), cub3d_exit("Duplicated color"));
+		cub3d_exit("Duplicated color");
 	colors = ft_split(str, ',');
 	if (!colors)
 		cub3d_exit("Memory allocation failed");
@@ -24,13 +24,12 @@ static void	parse_color(char *str, int color[3])
 	while (colors[i])
 	{
 		if (i < 3)
-			color[i] = cub3d_atoi(colors[i]);
-		free(colors[i]);
-		i++;
+			color[i] = cub3d_atoi(colors[i], colors, i);
+		free(colors[i++]);
 	}
 	free(colors);
 	if (i > 3 || *(str + ft_strlen(str) - 1) == ',')
-		return (free(str - 2), cub3d_exit("Invalid color syntax"));
+		cub3d_exit("Invalid color syntax");
 }
 
 static void	parse_map(char *str)
@@ -55,23 +54,23 @@ static void	parse_map(char *str)
 void	parse_line(char *line)
 {
 	t_config	*cfg;
-	char		*trm;
 
 	cfg = get_config();
-	trm = ft_strtrim(line, BLANKS);
-	if (!ft_strncmp(trm, "NO ", 3))
-		parse_texture(trm + 3, &cfg->n_texture);
-	else if (!ft_strncmp(trm, "SO ", 3))
-		parse_texture(trm + 3, &cfg->s_texture);
-	else if (!ft_strncmp(trm, "WE ", 3))
-		parse_texture(trm + 3, &cfg->w_texture);
-	else if (!ft_strncmp(trm, "EA ", 3))
-		parse_texture(trm + 3, &cfg->e_texture);
-	else if (!ft_strncmp(trm, "F ", 2))
-		parse_color(trm + 2, cfg->f_color);
-	else if (!ft_strncmp(trm, "C ", 2))
-		parse_color(trm + 2, cfg->c_color);
-	else if (ft_strchr(trm, '0') || ft_strchr(trm, '1'))
+	cfg->p_trim = ft_strtrim(line, BLANKS);
+	if (!ft_strncmp(cfg->p_trim, "NO ", 3))
+		parse_texture(cfg->p_trim + 3, &cfg->n_texture);
+	else if (!ft_strncmp(cfg->p_trim, "SO ", 3))
+		parse_texture(cfg->p_trim + 3, &cfg->s_texture);
+	else if (!ft_strncmp(cfg->p_trim, "WE ", 3))
+		parse_texture(cfg->p_trim + 3, &cfg->w_texture);
+	else if (!ft_strncmp(cfg->p_trim, "EA ", 3))
+		parse_texture(cfg->p_trim + 3, &cfg->e_texture);
+	else if (!ft_strncmp(cfg->p_trim, "F ", 2))
+		parse_color(cfg->p_trim + 2, cfg->f_color);
+	else if (!ft_strncmp(cfg->p_trim, "C ", 2))
+		parse_color(cfg->p_trim + 2, cfg->c_color);
+	else if (ft_strchr(cfg->p_trim, '0') || ft_strchr(cfg->p_trim, '1'))
 		parse_map(line);
-	free(trm);
+	free(cfg->p_trim);
+	cfg->p_trim = NULL;
 }

@@ -1,6 +1,21 @@
 #include "cub3d.h"
 
-int	cub3d_atoi(char *str)
+#include <stdlib.h>
+
+static void	free_strs(char **strs, int pos)
+{
+	int	i;
+
+	if (strs)
+	{
+		i = pos;
+		while (strs[i])
+			free(strs[i++]);
+		free(strs);
+	}
+}
+
+int	cub3d_atoi(char *str, char **strs, int pos)
 {
 	int	i;
 	int	sign;
@@ -18,7 +33,10 @@ int	cub3d_atoi(char *str)
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
+		{
+			free_strs(strs, pos);
 			cub3d_exit("Invalid number value");
+		}
 		result = (str[i] - '0') + (result * 10);
 		i++;
 	}

@@ -17,6 +17,7 @@ void	init_config(void)
 	i = 0;
 	cfg = get_config();
 	cfg->p_line = NULL;
+	cfg->p_trim = NULL;
 	cfg->n_texture = NULL;
 	cfg->s_texture = NULL;
 	cfg->w_texture = NULL;
@@ -39,6 +40,7 @@ void	free_config(void)
 	i = 0;
 	cfg = get_config();
 	free(cfg->p_line);
+	free(cfg->p_trim);
 	free(cfg->n_texture);
 	free(cfg->s_texture);
 	free(cfg->w_texture);
