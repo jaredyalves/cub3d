@@ -23,17 +23,23 @@ static void	parse_color(char *str, int color[3])
 		free(str - 2);
 		cub3d_exit("Error\nOne or more colors are duplicated\n");
 	}
-	i = 0;
 	colors = ft_split(str, ',');
 	if (!colors)
 		cub3d_exit("Error\nMemory allocation failed\n");
+	i = 0;
 	while (colors[i])
 	{
-		color[i] = ft_atoi(colors[i]);
+		if (i < 3)
+			color[i] = ft_atoi(colors[i]);
 		free(colors[i]);
 		i++;
 	}
 	free(colors);
+	if (i > 3)
+	{
+		free(str - 2);
+		cub3d_exit("Error\nFloor and Ceiling needs exactly 3 colors each\n");
+	}
 }
 
 static void	parse_map(char *str)
