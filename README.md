@@ -19,7 +19,7 @@ make
 ## Usage
 
 ```bash
-./cub3D maps/valid_default.cub
+./cub3D maps/valid/default.cub
 ```
 
 ## Contributing
