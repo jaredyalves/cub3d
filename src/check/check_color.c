@@ -8,9 +8,9 @@ void	check_color(int color[3])
 	while (i < 3)
 	{
 		if (color[i] == -1)
-			cub3d_exit("Error\nMissing one or more colors\n");
+			cub3d_exit("Missing one or more colors");
 		if (color[i] < 0 || color[i] > 255)
-			cub3d_exit("Error\nColors must have a value of 0 to 255\n");
+			cub3d_exit("Colors must have a value of 0 to 255");
 		i++;
 	}
 }

@@ -8,7 +8,7 @@ static void	parse_texture(char *str, char **texture)
 	if (*texture)
 	{
 		free(str - 3);
-		cub3d_exit("Error\nOne or more textures are duplicated\n");
+		cub3d_exit("One or more textures are duplicated");
 	}
 	*texture = ft_strtrim(str, BLANKS);
 }
@@ -21,11 +21,11 @@ static void	parse_color(char *str, int color[3])
 	if (*color != -1)
 	{
 		free(str - 2);
-		cub3d_exit("Error\nOne or more colors are duplicated\n");
+		cub3d_exit("One or more colors are duplicated");
 	}
 	colors = ft_split(str, ',');
 	if (!colors)
-		cub3d_exit("Error\nMemory allocation failed\n");
+		cub3d_exit("Memory allocation failed");
 	i = 0;
 	while (colors[i])
 	{
@@ -38,7 +38,7 @@ static void	parse_color(char *str, int color[3])
 	if (i > 3)
 	{
 		free(str - 2);
-		cub3d_exit("Error\nFloor and Ceiling needs exactly 3 colors each\n");
+		cub3d_exit("Floor and Ceiling needs exactly 3 colors each");
 	}
 }
 
@@ -53,7 +53,7 @@ static void	parse_map(char *str)
 	cfg->map_height += 1;
 	map = (char **)ft_calloc(sizeof(char *), cfg->map_height);
 	if (!map)
-		cub3d_exit("Error\nMemory allocation failed\n");
+		cub3d_exit("Memory allocation failed");
 	while (++i < cfg->map_height - 1)
 		map[i] = cfg->map[i];
 	map[cfg->map_height - 1] = ft_strtrim(str, "\n");

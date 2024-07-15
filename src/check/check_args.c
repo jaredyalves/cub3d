@@ -11,18 +11,18 @@ void	check_args(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\nThe program requires exactly one argument\n", 2);
+		ft_putstr_fd("The program requires exactly one argument", 2);
 		exit(EXIT_FAILURE);
 	}
 	if (!has_extension(argv[1], "cub"))
 	{
-		ft_putstr_fd("Error\nThe file must have a .cub extension\n", 2);
+		ft_putstr_fd("The file must have a .cub extension", 2);
 		exit(EXIT_FAILURE);
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error\nThe file does not exist or cannot be opened\n", 2);
+		ft_putstr_fd("The file does not exist or cannot be opened", 2);
 		exit(EXIT_FAILURE);
 	}
 	close(fd);

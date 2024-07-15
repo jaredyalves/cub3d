@@ -4,5 +4,5 @@ void	check_map(char **map, int height)
 {
 	(void)map;
 	if (height == 0)
-		cub3d_exit("Error\nMissing map\n");
+		cub3d_exit("Missing map");
 }
