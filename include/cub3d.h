@@ -19,7 +19,6 @@ typedef struct s_config
 	int		c_color[3];
 	char	**map;
 	int		map_height;
-
 }			t_config;
 
 // check
