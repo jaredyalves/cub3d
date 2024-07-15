@@ -24,12 +24,12 @@ static void	parse_color(char *str, int color[3])
 	while (colors[i])
 	{
 		if (i < 3)
-			color[i] = ft_atoi(colors[i]);
+			color[i] = cub3d_atoi(colors[i]);
 		free(colors[i]);
 		i++;
 	}
 	free(colors);
-	if (i > 3)
+	if (i > 3 || *(str + ft_strlen(str) - 1) == ',')
 		return (free(str - 2), cub3d_exit("Invalid color syntax"));
 }
 

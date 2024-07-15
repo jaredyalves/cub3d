@@ -23,6 +23,7 @@ SRCS		:= \
 	$(SRCDIR)/check/check_texture.c \
 	$(SRCDIR)/parse/parse_file.c \
 	$(SRCDIR)/parse/parse_line.c \
+	$(SRCDIR)/utils/atoi.c \
 	$(SRCDIR)/utils/config.c \
 	$(SRCDIR)/utils/exit.c \
 	$(SRCDIR)/utils/extension.c \

@@ -38,5 +38,6 @@ void		free_config(void);
 int			has_extension(char *filename, char *extension);
 
 void		cub3d_exit(char *error);
+int			cub3d_atoi(char *str);
 
 #endif
