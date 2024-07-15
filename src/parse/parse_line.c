@@ -6,10 +6,7 @@
 static void	parse_texture(char *str, char **texture)
 {
 	if (*texture)
-	{
-		free(str - 3);
-		cub3d_exit("One or more textures are duplicated");
-	}
+		return (free(str - 3), cub3d_exit("Duplicated texture"));
 	*texture = ft_strtrim(str, BLANKS);
 }
 
@@ -18,11 +15,8 @@ static void	parse_color(char *str, int color[3])
 	int		i;
 	char	**colors;
 
-	if (*color != -1)
-	{
-		free(str - 2);
-		cub3d_exit("One or more colors are duplicated");
-	}
+	if (color[0] != -1 || color[1] != -1 || color[2] != -1)
+		return (free(str - 2), cub3d_exit("Duplicated color"));
 	colors = ft_split(str, ',');
 	if (!colors)
 		cub3d_exit("Memory allocation failed");
@@ -36,10 +30,7 @@ static void	parse_color(char *str, int color[3])
 	}
 	free(colors);
 	if (i > 3)
-	{
-		free(str - 2);
-		cub3d_exit("Floor and Ceiling needs exactly 3 colors each");
-	}
+		return (free(str - 2), cub3d_exit("Invalid color syntax"));
 }
 
 static void	parse_map(char *str)

@@ -9,13 +9,13 @@ void	check_texture(char *texture)
 	int	fd;
 
 	if (!texture)
-		cub3d_exit("Missing one or more textures");
+		cub3d_exit("Missing texture");
 	if (!has_extension(texture, "xpm"))
-		cub3d_exit("Missing .xpm extension on one or more textures");
+		cub3d_exit("Texture missing .xpm extension");
 	if (ft_strchr(texture, ' ') || ft_strchr(texture, '\t'))
-		cub3d_exit("Invalid syntax on one or more textures");
+		cub3d_exit("Invalid texture syntax");
 	fd = open(texture, O_RDONLY);
 	if (fd == -1)
-		cub3d_exit("One or more textures doesn't exist or cannot be opened");
+		cub3d_exit("Texture does not exist or cannot be opened");
 	close(fd);
 }
