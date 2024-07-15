@@ -28,9 +28,9 @@ void	check_map(char **map, int height)
 {
 	int	players_count;
 
-	players_count = count_players(map, height);
 	if (height == 0)
 		cub3d_exit("Missing map");
+	players_count = count_players(map, height);
 	if (players_count == 0)
 		cub3d_exit("Missing player");
 	if (players_count != 1)
