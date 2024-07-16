@@ -70,7 +70,7 @@ void	parse_file(char *filename)
 	while (1)
 	{
 		cfg->p_line = get_next_line(fd);
-		if (!cfg->p_line)
+		if (cfg->p_line == NULL)
 			break ;
 		parse_line(cfg->p_line);
 		free(cfg->p_line);

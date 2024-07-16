@@ -30,7 +30,7 @@ static void	parse_color(char *str, int color[3])
 	if (color[0] != -1 || color[1] != -1 || color[2] != -1)
 		cub3d_exit("Duplicated color");
 	colors = ft_split(str, ',');
-	if (!colors)
+	if (colors == NULL)
 		cub3d_exit("Memory allocation failed");
 	i = 0;
 	while (colors[i])
@@ -58,7 +58,7 @@ static void	parse_map_line(char *str)
 	cfg = get_config();
 	cfg->map_height += 1;
 	map = (char **)ft_calloc(sizeof(char *), cfg->map_height);
-	if (!map)
+	if (map == NULL)
 		cub3d_exit("Memory allocation failed");
 	while (++i < cfg->map_height - 1)
 		map[i] = cfg->map[i];

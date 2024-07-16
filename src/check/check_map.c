@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 #include <libft.h>
 
 static int	count_players(char **map, int height)
@@ -52,7 +53,7 @@ static int	flood_fill(int row, int col, int rows, int cols)
 		return (1);
 	if (row == 0 || row == rows - 1 || col == 0 || col == cols - 1)
 		return (0);
-	if (!ft_strchr(" ", cfg->map[row][col]))
+	if (ft_strchr(" ", cfg->map[row][col]) == NULL)
 		cfg->map[row][col] = '#';
 	else
 		return (0);

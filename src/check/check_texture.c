@@ -20,7 +20,7 @@ void	check_texture(char *texture)
 {
 	int	fd;
 
-	if (!texture)
+	if (texture == NULL)
 		cub3d_exit("Missing texture");
 	if (!has_extension(texture, "xpm"))
 		cub3d_exit("Texture missing .xpm extension");
