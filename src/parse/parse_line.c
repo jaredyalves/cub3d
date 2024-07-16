@@ -39,6 +39,10 @@ static void	parse_map_line(char *str)
 	char		**map;
 
 	i = -1;
+	while (str[++i])
+		if (ft_strchr(" 01NSWE\n", str[i]) == NULL)
+			cub3d_exit("Invalid map syntax");
+	i = -1;
 	cfg = get_config();
 	cfg->map_height += 1;
 	map = (char **)ft_calloc(sizeof(char *), cfg->map_height);
@@ -88,7 +92,7 @@ void	parse_line(char *line)
 		parse_color(cfg->p_trim + 2, cfg->f_color);
 	else if (!ft_strncmp(cfg->p_trim, "C ", 2))
 		parse_color(cfg->p_trim + 2, cfg->c_color);
-	else if (ft_strchr(cfg->p_trim, '0') || ft_strchr(cfg->p_trim, '1'))
+	else if (*cfg->p_trim)
 		parse_map_line(line);
 	free(cfg->p_trim);
 	cfg->p_trim = NULL;
