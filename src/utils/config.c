@@ -32,6 +32,7 @@ void	init_config(void)
 	}
 	cfg->map = NULL;
 	cfg->map_height = 0;
+	cfg->player_count = 0;
 }
 
 void	free_config(void)

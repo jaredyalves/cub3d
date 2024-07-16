@@ -19,6 +19,10 @@ typedef struct s_config
 	int		c_color[3];
 	char	**map;
 	int		map_height;
+	int		player_x;
+	int		player_y;
+	int		player_direction;
+	int		player_count;
 }			t_config;
 
 // check
